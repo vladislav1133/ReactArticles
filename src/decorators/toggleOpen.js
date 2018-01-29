@@ -5,6 +5,13 @@ export default (OriginalComponent) => class WrappedComponent extends  ReactCompo
         isOpen: true
     }
 
+    componentDidMount() {
+        console.log('---', 'mounting')
+    }
+
+    componentDidUpdate() {
+        console.log('---', 'updating')
+    }
     render() {
 
         return <OriginalComponent {...this.props} isOpen = {this.state.isOpen} toggleOpen = {this.toggleOpen} />

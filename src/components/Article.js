@@ -1,33 +1,30 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import CommentList from './CommentList'
-import toggleOpen from '../decorators/toggleOpen'
 
-class Article extends Component {
+class Article extends PureComponent {
     static propTypes = {
         article: PropTypes.shape({
         id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
-        }).isRequired
-    }
+        }).isRequired,
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
 
-    componentWillReceiveProps(nextProps) {
-        //console.log('---', this.props.isOpen, nextProps.isOpen);
     }
-    
-    componentWillMount() {
-      //  console.log('mounting');
+    state = {
+        updateIndex: 0
     }
-
     render() {
 
         const {article, isOpen, toggleOpen} = this.props
 
 
         return (
-            <div ref = {this.setContainerRef}>
+            <div>
                 <h3>{article.title}</h3>
+
                 <button onClick = {toggleOpen}>
                     {isOpen? 'close' : 'open'}
                 </button>
@@ -36,14 +33,10 @@ class Article extends Component {
         )
     }
 
-    setContainerRef = ref => {
-        this.container = ref
-        console.log('---', ref);
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return nextProps.isOpen !== this.props.isOpen
+    // }
 
-    componentDidMount() {
-        //console.log('mounted');
-    }
     getBody() {
 
         const {article, isOpen} = this.props
@@ -53,14 +46,13 @@ class Article extends Component {
         return (
             <section>
                 <p>{article.text}</p>
-                <CommentList comments = {article.comments} ref = {this.setCommentsRef}/>
+                <button onClick = {() => this.setState({updateIndex: this.state.updateIndex + 1})}>update</button>
+                <CommentList comments = {article.comments} key = {this.state.updateIndex}/>
             </section>
         )
     }
 
-    setCommentsRef = ref => {
-      //  console.log('---', ref)
-    }
+
 }
 
 export default Article
