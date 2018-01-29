@@ -53,14 +53,14 @@ class Article extends Component {
         return (
             <section>
                 <p>{article.text}</p>
-                <CommentList comments = {article.comments} ref = {this.CommentsRef}/>
+                <CommentList comments = {article.comments} ref = {this.setCommentsRef}/>
             </section>
         )
     }
 
     setCommentsRef = ref => {
-        console.log('---', ref)
+      //  console.log('---', ref)
     }
 }
 
-export default toggleOpen(Article)
+export default Article
