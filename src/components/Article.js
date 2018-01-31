@@ -1,11 +1,15 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import CommentList from './CommentList'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import './article.css'
+
+
 
 class Article extends PureComponent {
     static propTypes = {
         article: PropTypes.shape({
-        id: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
         }).isRequired,
@@ -16,6 +20,7 @@ class Article extends PureComponent {
     state = {
         updateIndex: 0
     }
+
     render() {
 
         const {article, isOpen, toggleOpen} = this.props
@@ -25,10 +30,12 @@ class Article extends PureComponent {
             <div>
                 <h3>{article.title}</h3>
 
-                <button onClick = {toggleOpen}>
-                    {isOpen? 'close' : 'open'}
+                <button onClick={toggleOpen}>
+                    {isOpen ? 'close' : 'open'}
                 </button>
-                {this.getBody()}
+                <TransitionGroup>
+                    {this.getBody()}
+                </TransitionGroup>
             </div>
         )
     }
@@ -41,14 +48,22 @@ class Article extends PureComponent {
 
         const {article, isOpen} = this.props
 
-        if(!isOpen) return null
+        if (!isOpen) return null
 
         return (
+            <CSSTransition
+                in
+                classNames = 'article'
+                appear = {true}
+                timeout = {600}
+
+            >
             <section>
                 <p>{article.text}</p>
-                <button onClick = {() => this.setState({updateIndex: this.state.updateIndex + 1})}>update</button>
-                <CommentList comments = {article.comments} key = {this.state.updateIndex}/>
+                <button onClick={() => this.setState({updateIndex: this.state.updateIndex + 1})}>update</button>
+                <CommentList comments={article.comments} key={this.state.updateIndex}/>
             </section>
+            </CSSTransition>
         )
     }
 

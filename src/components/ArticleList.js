@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Article from './Article'
 import accordion from '../decorators/accordion'
 
+
  class ArticleList extends Component{
 
     static propTypes = {
@@ -15,12 +16,15 @@ import accordion from '../decorators/accordion'
     render() {
         const {article, openItemId, toggleOpenItem} = this.props
         const articleElements = this.props.articles.map((article) =>
+
             <li key={article.id}>
+
                 <Article
                     article = {article}
                     isOpen = {article.id === openItemId}
                     toggleOpen = {toggleOpenItem(article.id)}
                 />
+
             </li>)
 
         return (

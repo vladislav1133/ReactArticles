@@ -12,10 +12,7 @@
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-
-  },
-
+  "bugs": {},
   "devDependencies": {
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
@@ -27,8 +24,12 @@
     "webpack-dev-server": "^2.0.0"
   },
   "dependencies": {
+    "css-loader": "^0.28.9",
     "prop-types": "^15.6.0",
     "react": "^15.5.0",
-    "react-dom": "^15.5.0"
+    "react-dom": "^15.5.0",
+    "react-select": "^1.2.1",
+    "react-transition-group": "^2.2.1",
+    "style-loader": "^0.20.1"
   }
 }
