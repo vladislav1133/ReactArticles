@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import CommentList from './CommentList'
+import CommentList from '../CommentList'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import './article.css'
+import './style.css'
 
 
 
@@ -33,6 +33,7 @@ class Article extends PureComponent {
                 <button onClick={toggleOpen}>
                     {isOpen ? 'close' : 'open'}
                 </button>
+                <button onClick={this.handleDelete}>delete me</button>
                 <TransitionGroup>
                     {this.getBody()}
                 </TransitionGroup>
@@ -43,6 +44,10 @@ class Article extends PureComponent {
     // shouldComponentUpdate(nextProps, nextState) {
     //     return nextProps.isOpen !== this.props.isOpen
     // }
+
+    handleDelete = () => {
+        console.log('---', 'delete')
+    }
 
     getBody() {
 
