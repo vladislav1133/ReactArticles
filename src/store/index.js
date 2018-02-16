@@ -3,7 +3,7 @@ import reducer from '../reducer'
 
 const store = createStore(reducer)
 
-//dev/debug(no production) only
+//dev only/debug(no production)
 window.store = store
 
 export default store

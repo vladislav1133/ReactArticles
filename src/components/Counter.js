@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux' //factory for decorator
 import {increment} from '../AC'
 
 class Counter extends Component {
@@ -36,6 +36,6 @@ class Counter extends Component {
 
 //const decorator = connect(mapStateProps,mapToDispatch)
 
-export default connect( (state) => ({
+export default connect( (state) => ({   //connect second argument wrap AC in dispatch exp: this.props.dispatch(increment()) === increment() now
     counter: state.count
-}), {increment})(Counter)
+}), {increment} )(Counter)

@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import CommentList from '../CommentList'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import {connect} from 'react-redux'
+import {deleteArticle} from '../../AC'
 import './style.css'
 
 
@@ -22,9 +24,7 @@ class Article extends PureComponent {
     }
 
     render() {
-
         const {article, isOpen, toggleOpen} = this.props
-
 
         return (
             <div>
@@ -46,7 +46,8 @@ class Article extends PureComponent {
     // }
 
     handleDelete = () => {
-        console.log('---', 'delete')
+        const {deleteArticle, article} = this.props
+        deleteArticle(article.id)
     }
 
     getBody() {
@@ -75,4 +76,4 @@ class Article extends PureComponent {
 
 }
 
-export default Article
+export default connect(null, {deleteArticle})(Article)
