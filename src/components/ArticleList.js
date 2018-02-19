@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Article from './Article'
 import accordion from '../decorators/accordion'
 import {connect} from 'react-redux'
+import {filtrateArticlesSelector} from "../selectors";
 
 
  class ArticleList extends Component{
@@ -16,17 +17,15 @@ import {connect} from 'react-redux'
     }
 
     render() {
-        const {article, openItemId, toggleOpenItem} = this.props
-        const articleElements = this.props.articles.map((article) =>
+        const {articles, openItemId, toggleOpenItem} = this.props
+        const articleElements = articles.map((article) =>
 
             <li key={article.id}>
-
                 <Article
                     article = {article}
                     isOpen = {article.id === openItemId}
                     toggleOpen = {toggleOpenItem(article.id)}
                 />
-
             </li>)
 
         return (
@@ -37,7 +36,9 @@ import {connect} from 'react-redux'
     }
 
 }
-
-export default connect(state => ({
-    articles: state.articles
-}))(accordion(ArticleList))
+// Певый метод MapStateToProps хорошо подходит для что бы получить только нужную информацию
+export default connect(state => {
+    return {
+        articles: filtrateArticlesSelector(state)
+    }
+})(accordion(ArticleList))

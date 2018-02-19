@@ -23,6 +23,14 @@ class Article extends PureComponent {
         updateIndex: 0
     }
 
+    componentDidMount() {
+        console.log('---', 'article mounting')
+    }
+
+    componentDidUpdate() {
+        console.log('---', 'article updating')
+    }
+
     render() {
         const {article, isOpen, toggleOpen} = this.props
 

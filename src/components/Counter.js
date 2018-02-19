@@ -9,6 +9,14 @@ class Counter extends Component {
         increment: PropTypes.func.isRequired
     }
 
+    componentDidMount() {
+        console.log('---', 'counter mounting')
+    }
+
+    componentDidUpdate() {
+        console.log('---', 'counter updating')
+    }
+
     handleIncrement = () => {
         const {increment} = this.props
         increment()
