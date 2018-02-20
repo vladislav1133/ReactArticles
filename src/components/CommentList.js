@@ -37,6 +37,7 @@ class CommentList extends Component {
 
         if(!comments.length) return <p>No comments yet</p>
 
+
         return (
             <div>
                 <ul>
