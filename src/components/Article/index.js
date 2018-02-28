@@ -64,6 +64,7 @@ class Article extends PureComponent {
 
         if (!isOpen) return null
 
+        console.log('---------------------------ARTICLE',article)
         return (
             <CSSTransition
                 in
@@ -75,7 +76,7 @@ class Article extends PureComponent {
             <section>
                 <p>{article.text}</p>
                 <button onClick={() => this.setState({updateIndex: this.state.updateIndex + 1})}>update</button>
-                <CommentList comments={article.comments} key={this.state.updateIndex}/>
+                <CommentList article={article} key={this.state.updateIndex}/>
             </section>
             </CSSTransition>
         )
